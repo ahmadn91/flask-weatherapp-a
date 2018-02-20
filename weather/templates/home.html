@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<style>
+body{
+  margin: 0;
+  background: #1B1B1B;
+  font-family: 'Arvo', serif;
+  background-image: url("{{ url_for('static',filename="bkg.jpg")}}");
+
+
+}
+
+.container{
+
+  width: 80%;
+  height: 100vh;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+
+
+
+}
+.header{
+  width: 100%;
+  height: 40%;
+  background: white;
+  background-image: url("{{ url_for('static',filename="bkg1.jpg")}}");
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 5px 10px blur(2px);
+
+}
+.info{
+  width: 100%;
+  height: 54%;
+
+
+
+  background-image: url("{{ url_for('static',filename="abcd.jpg")}}");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+.timeandloc{
+  width: 100%;
+  height: 35%;
+  color: white;
+  font-size: 60px;
+  margin: 0;
+  padding: 0;
+
+
+
+}
+#time{
+  margin: 0;
+  position: relative;
+  top:40px;
+  left:40px;
+}
+
+
+
+
+
+
+}
+.nd{
+  height: 100%;
+  width: 12.5%;
+  text-align: center;
+  float: left;
+  color: white;
+
+
+}
+
+
+
+.dayname{
+  display: inline-block;
+  padding: 5px;
+  margin-top: 20px;
+  border-width: 2px;
+  background: #252C3F;
+  border-color:#252C3F;
+  border-radius: 15px;
+  border-style: solid;
+  font-family: 'Arvo', serif;
+  font-family: 'Varela Round', sans-serif;
+}
+#about{
+  margin: 0;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  position: relative;
+  left: 45px;
+  top: 30px;
+  opacity: 0.5;
+  transition: opacity 1s;
+  cursor: pointer;
+}
+#about:hover{
+  opacity: 1;
+
+}
+#searchbar{
+  float: left;
+  position: absolute;
+  width: 200px;
+  height: 30px;
+  left:12.5%;
+  border-style: none;
+  outline-width: 0;
+  transition: width 1s ease-in,border-radius 1s ease-in;
+
+
+}
+#searchbar:focus{
+  width: 400px;
+  border-radius: 20px;
+}
+#icon{
+  width: 50px;
+  height: auto;
+  margin-top: 100px;
+
+  transition: all .4s ease-in-out;
+}
+#icon:hover{
+  transform: scale(1.5,1.5);
+}
+
+</style>
+  <head>
+
+    <link href="https://fonts.googleapis.com/css?family=Arvo|Varela+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+
+      <div class="header">
+
+        <div class="timeandloc">
+          <p id="about">About</p>
+          <p id="time">{{ time }}<span style="font-size:20px;"> {{ tod }}</span></p>
+          <p id="date" style="font-size:16px;margin-top:30px;margin-left:45px;">{{ date }}</p>
+          <p id="location" style="float:right; font-size:40px;margin:0;position:relative;bottom:80px;left:-20px;">{{ city_name}}<span id="country" style="font-size:20px;position:relative;top:20px;right:30px;">{{ country_name }}</span></p>
+          <form method="POST">
+              <input id="searchbar" type="text" name="cityname" placeholder="Enter city name" style="text-align:center;font-size:16px;">
+              <input type="submit" style="visibility: hidden;" />
+          </form>
+        </div>
+      </div>
+      <div class="info">
+        <div  style="width:30%;height:100%;float:left;text-align:center;">
+          <img style="position:relative;width:50px;height:auto;top:75px;left:10px;" src="{{ url_for('static', filename = "icons/01d.png"  ) }}"/>
+        <p style="color:white;font-size:80px;margin-top:75px;margin-left:30px;">{{ temp }}&deg;</p>
+        </div>
+        <div style="width:8.75%;height:100%;float:left;padding-top:30px;">
+          <img id="icon"   src="{{ url_for('static', filename = "icons/maxtemp.png"  ) }}"/>
+          <p style="font-size:20px;color:white;position:relative;left:5px;" >{{ temp_max }}&deg;</p>
+        </div>
+        <div style="width:8.75%;height:100%;float:left;padding-top:30px;">
+          <img id="icon"   src="{{ url_for('static', filename = "icons/mintemp.png"  ) }}"/>
+          <p style="font-size:20px;color:white;position:relative;left:15px;" >{{ temp_min }}&deg;</p>
+        </div>
+        <div style="width:8.75%;height:100%;float:left;padding-top:30px;">
+          <img id="icon"   src="{{ url_for('static', filename = "icons/humidity.png"  ) }}"/>
+          <p style="font-size:20px;color:white;position:relative;left:7px;" >{{ hum }}&#37;</p>
+        </div>
+        <div style="width:8.75%;height:100%;float:left;padding-top:30px;">
+          <img id="icon"   src="{{ url_for('static', filename = "icons/sunset.png"  ) }}"/>
+          <p style="font-size:20px;color:white;position:relative;left:2px;" >{{ suns }}&deg;</p>
+        </div>
+        <div style="width:8.75%;height:100%;float:left;padding-top:30px;">
+          <img id="icon"   src="{{ url_for('static', filename = "icons/sunrise.png"  ) }}"/>
+          <p style="font-size:20px;color:white;position:relative;left:-5px;" >{{ sunr }}&deg;</p>
+        </div>
+        <div style="width:8.75%;height:100%;float:left;padding-top:30px;">
+          <img id="icon"   src="{{ url_for('static', filename = "icons/pressure.png"  ) }}"/>
+          <p style="font-size:20px;color:white;position:relative;left:-8px;" >{{ pres }}&deg;</p>
+
+        </div>
+        <div style="width:8.75%;height:100%;float:left;padding-top:30px;">
+          <img id="icon"   src="{{ url_for('static', filename = "icons/wind.png"  ) }}"/>
+          <p style="font-size:20px;color:white;position:relative;left:5px;" >{{ wind }}&deg;</p>
+        </div>
+        <div style="width:8.75%;height:100%;float:left;padding-top:30px;">
+          <img id="icon"src="{{ url_for('static', filename = "icons/winddirection.png"  ) }}"/>
+          <p style="font-size:20px;color:white;position:relative;left:-10px;" >{{ windd }}&deg;</p>
+        </div>
+
+
+
+      </div>
+
+
+    </div>
+    <script type="text/javascript">
+      setTimeout(function () {
+        location.reload();
+      }, 60 * 1000);
+  </script>
+  </body>
+</html>
